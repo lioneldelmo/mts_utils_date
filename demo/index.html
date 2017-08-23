@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>mts-utils-date demo</title>
+
+    <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../bower_components/iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../mts-utils-date.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic mts-utils-date demo</h3>
+      <demo-snippet>
+
+        <template>
+
+
+            <mts-utils-date id="dateUtil"></mts-utils-date>
+
+            <dom-bind id="app">
+
+              <template>
+
+                <div>
+                  <h4>Demo using the "toFormat" function API. </h4>
+                  <em>
+                    <p>First parameter is the format string, ie "MM/DD/YYYY</p>
+                    <p>Second parameter is optional which is the date value, can be of type string or date. If not provided, the default will be the current date.</p>
+                  </em>
+                  <code>dateUtil.toFormat("MM/DD/YYYY") result to => <b>[[date1]]</b></code>
+                  <code>dateUtil.toFormat("MM/DD/YYYY HH:mm:ss", new Date()) result to => <b>[[date2]]</b></code>
+                </div>
+
+
+                <div>
+                  <h4>Demo using the "fixISODateString" function API. </h4>
+                  <em>
+                    <p>This is only for Safari browser where exception is raised when converting ISO date string to date. It requires extra manipulation of the date string to fix the exception.
+                  </em>
+                  <code>dateUtil.fixISODateString((new Date()).toISOString()) result to => <b>[[date3]]</b></code>
+                </div>
+
+                <script>
+                  window.addEventListener('WebComponentsReady', function(e) {
+
+                    var app = document.querySelector("#app");
+                    var dateUtil = document.querySelector("#dateUtil");
+
+                    app.date1 = dateUtil.toFormat("MM/DD/YYYY");
+                    app.date2 = dateUtil.toFormat("MM/DD/YYYY HH:mm:ss", new Date());
+                    app.date3 = dateUtil.fixISODateString((new Date()).toISOString());
+
+                  });
+
+                </script>
+
+              </template>
+            </dom-bind>
+
+
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

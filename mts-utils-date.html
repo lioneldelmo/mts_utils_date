@@ -1,0 +1,79 @@
+<link rel="import" href="bower_components/polymer/polymer-element.html">
+<link rel="import" href="./mts-moment-import.html">
+
+<dom-module id="mts-utils-date">
+  <script>
+    /**
+     * `mts-utils-date`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class MtsUtilsDate extends Polymer.Element {
+      static get is() { return 'mts-utils-date'; }
+      static get properties() {
+        return {
+          typeOf: {
+            type: String,
+            value: 'mts-utils-date'
+          },
+          date: {
+            type: Date,
+            value: null
+          }
+        };
+      }
+
+      _init() {
+        if (!this.date) this.date = Date.now();
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+
+        this._init();
+      }
+
+      toFormat(format, date) {
+        if (!date) date = this.date;
+
+        return moment(date).format(format);
+      }
+
+      /**
+       * Method to fix common formatting problems with ISO date strings. ISO date strings must be formatted correctly in
+       * order to be parsed by Safari, which requires that the ISO Date Format end with a 'Z' and that a 'T' separates the date and time
+       * @param dateString
+       * @returns
+       */
+      fixISODateString(dateString) {
+        if (!dateString) {
+          return undefined;
+        }
+
+        if (({}).toString.call(dateString).indexOf("Date") !== -1) {
+          return dateString.toISOString();
+        }
+
+        if (dateString.lastIndexOf("Z") === -1) {
+          dateString += "Z";
+        }
+        if (dateString.indexOf("T") === -1) {
+          return dateString.replace(" ", "T");
+        }
+
+        var tmp = new Date(dateString);
+        if (isNaN(tmp.valueOf())) {
+          return dateString;
+        } else {
+          return new Date(dateString).toISOString();
+        }
+      }
+
+    }
+
+    window.customElements.define(MtsUtilsDate.is, MtsUtilsDate);
+  </script>
+</dom-module>

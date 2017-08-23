@@ -1,0 +1,34 @@
+<!--
+Asset Tracker
+
+NASA Airborne Science Program (ASP)
+Mission Tools Suite (MTS)
+
+National Aeronautics and Space Administration (NASA)
+Ames Research Center (ARC)
+Intelligent Systems Division
+
+Aaron R. Duley <aaron.r.duley@nasa.gov>
+Lionel Delmo <lionel.delmo@nasa.gov>
+
+https://airbornescience.nasa.gov
+https://mts.nasa.gov
+
+This element bootstraps loading of the moment.js library.
+-->
+
+<link rel="import" href="bower_components/polymer/polymer-element.html">
+
+<dom-module id="mts-moment-import">
+
+    <script type="text/javascript" src="bower_components/moment/min/moment.min.js" charset="utf-8"></script>
+
+    <script>
+
+        class MtsMomentImport extends Polymer.Element {
+            static get is() { return 'mts-moment-import'; }
+        }
+        window.customElements.define(MtsMomentImport.is, MtsMomentImport);
+
+    </script>
+</dom-module>
