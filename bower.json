@@ -12,6 +12,12 @@
     "utility"
   ],
   "main": "mts-utils-date.html",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lioneldelmo/mts_utils_date.git"
+  },
+  "homepage": "https://github.com/lioneldelmo/mts_utils_date.git",
   "dependencies": {
     "polymer": "^2.0.2",
     "moment": "^2.18.1",
@@ -22,6 +28,12 @@
     "web-component-tester": "Polymer/web-component-tester#^6.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
   },
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
   "resolutions": {
     "polymer": "^2.0.0"
   }
